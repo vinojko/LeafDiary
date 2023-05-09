@@ -1,0 +1,42 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: rgba(199, 199, 199, 0.226);
+    backdrop-filter: blur(20px);
+    padding: 1rem 25rem;
+  }
+  
+  .logo img {
+    height: 40px; /* Adjust the height as needed */
+  }
+  
+  .website-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding-left: 0.4rem;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-email {
+    margin-right: 1rem;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555555;
+  }
+
+  .logo-name {
+    display: flex;
+    align-items: center;
+  
+  }

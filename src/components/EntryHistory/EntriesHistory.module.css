@@ -1,0 +1,40 @@
+.entries-history {
+
+  margin-right: 2rem;
+  background-color: rgba(255, 255, 255, 0.81);
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  backdrop-filter: blur(50px);
+  height: max-height;
+  }
+  .calendar {
+    margin-bottom: 2rem;
+    margin-right: 2rem;
+    max-width: 100%;
+    background-color: #fff;
+    color: #222;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.125em;
+
+    border: none;
+  }
+
+
+  abbr{
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+  }
+
+  span{
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+  }
+  .entries-container {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+

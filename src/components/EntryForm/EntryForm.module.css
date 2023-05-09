@@ -1,0 +1,53 @@
+.entry-form input{
+display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  font: inherit;
+  line-height: 1.5rem;
+  padding: 0 0.25rem;
+}
+
+.entry-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.entry-form__control label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: left;
+  }
+  
+  .entry-form__control input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .entry-form__control textarea {
+    margin-bottom: 0.5rem;
+    display: block;
+    text-align: left;
+    width: 100%;
+    resize: none;
+  }
+
+  .mdeditor{
+    margin-top: 1rem;
+  }
+
+  .toast-success{
+    background: #04a282 !important;
+  }
+
+  .toast-error{
+    background: #ca122d !important;
+  }

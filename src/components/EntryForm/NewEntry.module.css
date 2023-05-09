@@ -1,0 +1,11 @@
+  .new-entry {
+      flex: 5;
+      background-color: rgba(255, 255, 255, 0.685);
+      padding: 1rem;
+      width: 50rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+    }
+
+ 
