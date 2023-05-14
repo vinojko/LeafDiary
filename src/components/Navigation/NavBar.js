@@ -2,8 +2,11 @@ import React from "react";
 import logoImage from "../../assets/images/logo.png";
 import styles from "./NavBar.module.css";
 import Button from "../UI/Button/Button";
+import { useAuth } from "../../firebase/auth.js";
 
 function NavBar() {
+  const { authUser, signOut } = useAuth();
+  console.log(authUser);
   return (
     <nav className={styles.navbar}>
       <div className={styles["logo-name"]}>
@@ -14,8 +17,10 @@ function NavBar() {
       </div>
 
       <div className={styles.userInfo}>
-        <span className={styles["user-email"]}>example@gmail.com</span>
-        <Button type="submit">Logout</Button>
+        <span className={styles["user-email"]}>{authUser?.email}</span>
+        <Button type="submit" onClick={signOut}>
+          Logout
+        </Button>
       </div>
     </nav>
   );

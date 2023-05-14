@@ -1,0 +1,93 @@
+.login-container{
+    display: flex;
+    height: 70vh; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.login {
+    background-color: rgba(255, 255, 255, 0.41);
+    padding: 2rem;
+    width: 30rem;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+}
+
+.login-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.login-input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: .9rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;;
+    padding-left: 2.2rem
+}
+.input-field {
+    width: 100%;
+  }
+
+.login-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.login-logo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+
+  }
+
+  .login-logo img{
+    height: 70px; 
+  }
+
+  .input-container {
+    position: relative;
+  }
+  
+  .icon {
+    position: absolute;
+    left: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    color: var(--light-gray);
+  }
+
+  .login-caption p {
+    text-align: center;
+  }
+  .login-caption h3 {
+    text-align: center;
+  }
+
+  .login-caption {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    margin : 0;
+  }
+
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .no-account {
+    margin-top: 0.5rem;
+    margin-bottom:1rem;
+  }
+

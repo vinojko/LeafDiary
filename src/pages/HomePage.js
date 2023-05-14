@@ -1,9 +1,11 @@
 import NewEntry from "../components/EntryForm/NewEntry";
 import EntriesHistory from "../components/EntryHistory/EntriesHistory";
 import styles from "../App.module.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useState } from "react";
-import NavBar from "../components/Navigation/NavBar";
+import { useAuth } from "../firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const DUMMY_ENTRIES = [
   {
@@ -23,14 +25,28 @@ const DUMMY_ENTRIES = [
 ];
 
 function HomePage() {
+  const { authUser, isLoading } = useAuth();
+
   const [entries, setEntries] = useState(DUMMY_ENTRIES);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoading && !authUser) {
+      navigate("/login");
+    }
+  });
 
   const addEntryHandler = (entry) => {
     setEntries((prevEntries) => {
       return [entry, ...prevEntries];
     });
   };
-  return (
+  return !authUser ? (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: "50%", marginTop: "25%" }}
+    />
+  ) : (
     <>
       <div className={styles["container"]}>
         <EntriesHistory items={entries} />
