@@ -8,10 +8,15 @@ import { auth } from "../../firebase/firebase.js";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../../firebase/auth";
+
+//Tu si ostal.
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { authUser, isLoading } = useAuth();
 
   const navigate = useNavigate();
 
@@ -20,17 +25,49 @@ function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      // Signin successful
-      //toastSuccess();
+
+      toastSuccess("You have succesfully logged in!");
       navigate("/");
     } catch (error) {
       // Handle registration error
-      console.error(error);
-      //toastError(error.message);
+
+      toastError(error.message);
     }
   };
+  const toastSuccess = (successMessage) => {
+    toast.success(successMessage, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      className: styles["toast-success"],
+    });
+  };
+  const toastError = (errorMessage) => {
+    toast.error(errorMessage, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      className: styles["toast-error"],
+    });
+  };
+
   return (
     <>
+      <ToastContainer
+        toastStyle={{
+          fontFamily: "'Plus Jakarta Sans', sans-serif",
+        }}
+      />
       <form onSubmit={handleLogin}>
         <div className={styles["login-container"]}>
           <div className={styles["login"]}>

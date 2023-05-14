@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./CostumCalendar.css";
 import styles from "./EntriesHistory.module.css";
-import EntryHistory from "./EntryHistory";
+
 import EntriesList from "./EntriesList";
 
 const EntriesHistory = (props) => {

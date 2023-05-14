@@ -10,6 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../firebase/auth";
+import { CircularProgress } from "@mui/material";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,7 @@ function Register() {
   const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
   const navigate = useNavigate();
   const { authUser } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -24,13 +26,15 @@ function Register() {
     if (!checkFormInputs()) return;
 
     try {
+      setIsLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
+      setIsLoading(false);
       // Registration successful
       toastSuccess();
       navigate("/");
     } catch (error) {
       // Handle registration error
-      console.error(error);
+      setIsLoading(false);
       toastError(error.message);
     }
   };
@@ -77,7 +81,7 @@ function Register() {
       className: styles["toast-error"],
     });
   };
-  return (
+  return !isLoading ? (
     <>
       <ToastContainer
         toastStyle={{
@@ -126,6 +130,11 @@ function Register() {
         </div>
       </div>
     </>
+  ) : (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: "50%", marginTop: "25%" }}
+    />
   );
 }
 

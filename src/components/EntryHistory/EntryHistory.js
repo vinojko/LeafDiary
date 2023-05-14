@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import styles from "./EntryHistory.module.css";
 import { FiEdit } from "react-icons/fi";
 import { FiTrash } from "react-icons/fi";

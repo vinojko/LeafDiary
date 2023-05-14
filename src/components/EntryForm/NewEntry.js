@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React from "react";
 import styles from "./NewEntry.module.css";
 import EntryForm from "./EntryForm";
 

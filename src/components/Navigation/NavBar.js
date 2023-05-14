@@ -6,8 +6,7 @@ import { useAuth } from "../../firebase/auth.js";
 
 function NavBar() {
   const { authUser, signOut } = useAuth();
-  console.log(authUser);
-  return (
+  return authUser ? (
     <nav className={styles.navbar}>
       <div className={styles["logo-name"]}>
         <div className={styles.logo}>
@@ -23,6 +22,8 @@ function NavBar() {
         </Button>
       </div>
     </nav>
+  ) : (
+    <></>
   );
 }
 
