@@ -13,7 +13,7 @@ const EntriesHistory = (props) => {
     <div className={styles["entries-container"]}>
       <Calendar onChange={setDate} value={date} className={styles.calendar} />
       <div className={styles["entries-history"]}>
-        <EntriesList items={props.items} />
+        <EntriesList />
       </div>
     </div>
   );

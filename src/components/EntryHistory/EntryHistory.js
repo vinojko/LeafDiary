@@ -4,6 +4,7 @@ import { FiEdit } from "react-icons/fi";
 import { FiTrash } from "react-icons/fi";
 import "../../variables.css";
 import { Link } from "react-router-dom";
+import { deleteEntry } from "../../firebase/firestore";
 
 const EntryHistory = (props) => {
   const formattedDate = props.date.toLocaleDateString("en-US", {
@@ -14,6 +15,16 @@ const EntryHistory = (props) => {
 
   const dotFormattedDate = formattedDate.replace(/\//g, ".");
 
+  const handleTrashClick = async (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    await deleteEntry(props.id);
+
+    // Add your logic for handling the trash button click here
+    // For example, you can delete the entry or show a confirmation dialog
+  };
+
   return (
     <Link
       to="/entry-detail"
@@ -23,10 +34,14 @@ const EntryHistory = (props) => {
         <div className={styles["flex-container"]}>
           <div className={styles["title"]}>{props.title}</div>
           <div className={styles["edit-icon"]}>
-            <FiEdit></FiEdit>
+            <button onClick={handleTrashClick}>
+              <FiEdit className={styles["edit-icon"]} />
+            </button>
           </div>
           <div className={styles["trash-icon"]}>
-            <FiTrash></FiTrash>
+            <button onClick={handleTrashClick}>
+              <FiTrash className={styles["trash-icon"]} />
+            </button>
           </div>
         </div>
         <div className={styles["flex-container"]}>

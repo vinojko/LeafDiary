@@ -18,16 +18,25 @@ export function addEntry(uid, title, date, content) {
 }
 
 export async function getEntries(uid) {
-  const entries = query(
+  const entriesQuery = query(
     collection(db, ENTRIES_COLLECTION),
     where("uid", "==", uid),
     orderBy("date", "desc")
   );
-  const snapshot = await getDocs(entries);
+  const snapshot = await getDocs(entriesQuery);
 
   let allEntries = [];
-  for (const documentSnapshot of snapshot.docs) {
-    const entry = documentSnapshot.data();
-  }
+  snapshot.forEach((documentSnapshot) => {
+    const entry = {
+      id: documentSnapshot.id, // Include the ID of the entry
+      ...documentSnapshot.data(),
+    };
+    allEntries.push(entry);
+  });
+
   return allEntries;
+}
+
+export async function deleteEntry(entryId) {
+  await deleteDoc(doc(db, ENTRIES_COLLECTION, entryId));
 }
