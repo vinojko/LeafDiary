@@ -1,7 +1,7 @@
 import EntryHistory from "./EntryHistory";
 import styles from "./EntriesList.module.css";
 
-const EntriesList = (props) => {
+const EntriesList = () => {
   const isEmpty = props.items.length === 0;
   //Prvo neki kar se navezuje, potem pa set...., to kar posodobi spremenljivko
   if (isEmpty) {

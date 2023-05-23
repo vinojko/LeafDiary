@@ -6,23 +6,40 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./EntryForm.module.css";
+import { addEntry } from "../../firebase/firestore";
+import { auth } from "../../firebase/firebase";
+import { useAuth } from "../../firebase/auth";
 
 const EntryForm = (props) => {
   const [contentValue, setContentValue] = useState("");
+  const { authUser } = useAuth();
 
   const inputTitleRef = useRef();
   const inputDateRef = useRef();
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     if (validateFormInputs() === false) return;
 
     const entryData = {
+      id: authUser.uid,
       title: inputTitleRef.current.value,
       date: new Date(inputDateRef.current.value),
       content: contentValue,
     };
+
+    try {
+      addEntry(
+        authUser.uid,
+        inputTitleRef.current.value,
+        new Date(inputDateRef.current.value),
+        contentValue
+      );
+    } catch (error) {
+      console.log(authUser.uid);
+      console.error("Error adding document: ", error.message);
+    }
 
     console.log(entryData);
     resetFormInputs();

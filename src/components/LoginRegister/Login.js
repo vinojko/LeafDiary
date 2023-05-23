@@ -5,11 +5,12 @@ import { HiUser } from "react-icons/hi";
 import { HiLockClosed } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.js";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { useAuth } from "../../firebase/auth";
+import { CircularProgress } from "@mui/material";
 
 //Tu si ostal.
 
@@ -61,7 +62,18 @@ function Login() {
     });
   };
 
-  return (
+  useEffect(() => {
+    if (!isLoading && authUser) {
+      navigate("/");
+    }
+  }, [authUser, isLoading]);
+
+  return isLoading || (isLoading && !!authUser) ? (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: "50%", marginTop: "25%" }}
+    />
+  ) : (
     <>
       <ToastContainer
         toastStyle={{
@@ -100,7 +112,7 @@ function Login() {
             </div>
             <div className={styles["no-account"]}>
               <p>
-                Don't have an account? <Link to="/register">Join now. </Link>
+                Don't have an account? <Link to="/register">Join now.</Link>
               </p>
             </div>
             <div className={styles["login-button"]}>
