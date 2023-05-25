@@ -67,3 +67,12 @@
     color: #7B7E7F;
 
 }
+
+.modal {
+    top: '10%';
+    left: '10%';
+    right: 'auto';
+    bottom: 'auto';
+    margin-right: '-50%';
+    transform: 'translate(-50%, -50%)';
+}

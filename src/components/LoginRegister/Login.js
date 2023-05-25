@@ -80,15 +80,15 @@ function Login() {
           fontFamily: "'Plus Jakarta Sans', sans-serif",
         }}
       />
-      <form onSubmit={handleLogin}>
-        <div className={styles["login-container"]}>
-          <div className={styles["login"]}>
-            <div className={styles["login-logo"]}>
-              <img src={logoImage} alt="Logo" />
 
-              <div className={styles["login-title"]}>LeafDiary</div>
-            </div>
+      <div className={styles["login-container"]}>
+        <div className={styles["login"]}>
+          <div className={styles["login-logo"]}>
+            <img src={logoImage} alt="Logo" />
 
+            <div className={styles["login-title"]}>LeafDiary</div>
+          </div>
+          <form onSubmit={handleLogin}>
             <div className={styles["input-container"]}>
               <HiUser className={styles["icon"]} />
 
@@ -118,9 +118,9 @@ function Login() {
             <div className={styles["login-button"]}>
               <Button type="submit">Sign in</Button>
             </div>
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
     </>
   );
 }

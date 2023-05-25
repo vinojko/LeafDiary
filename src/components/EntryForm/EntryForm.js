@@ -7,12 +7,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./EntryForm.module.css";
 import { addEntry } from "../../firebase/firestore";
+import { useEntries } from "../context/EntriesContext";
 import { auth } from "../../firebase/firebase";
 import { useAuth } from "../../firebase/auth";
 
 const EntryForm = (props) => {
   const [contentValue, setContentValue] = useState("");
   const { authUser } = useAuth();
+  const { addEntryToContext } = useEntries();
 
   const inputTitleRef = useRef();
   const inputDateRef = useRef();
@@ -30,10 +32,10 @@ const EntryForm = (props) => {
     };
 
     try {
-      addEntry(
+      await addEntryToContext(
         authUser.uid,
         inputTitleRef.current.value,
-        new Date(inputDateRef.current.value),
+        inputDateRef.current.value,
         contentValue
       );
     } catch (error) {
@@ -45,7 +47,7 @@ const EntryForm = (props) => {
     resetFormInputs();
     toastSuccess();
 
-    props.onSaveEntryData(entryData);
+    //props.onSaveEntryData(entryData);
   };
 
   const resetFormInputs = () => {

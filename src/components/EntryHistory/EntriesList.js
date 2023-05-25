@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import EntryHistory from "./EntryHistory";
 import styles from "./EntriesList.module.css";
-import { getEntries } from "../../firebase/firestore";
 import { useAuth } from "../../firebase/auth";
+import { CircularProgress } from "@mui/material";
+import { useEntries } from "../context/EntriesContext";
+import { getEntries, deleteEntry } from "../../firebase/firestore";
 
 const EntriesList = () => {
-  const [entries, setEntries] = useState([]);
+  const { entries, setEntries, fetchEntries } = useEntries();
   const [isEmpty, setIsEmpty] = useState(false);
   const { authUser } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const [prevEntries, setPrevEntries] = useState(entries);
 
   useEffect(() => {
-    const fetchEntries = async () => {
+    if (authUser) {
       const uid = authUser.uid;
-      const entries = await getEntries(uid);
-      setEntries(entries);
-      setIsEmpty(entries.length === 0);
-    };
-
-    //Brisanje in posodavljanje, mas v gptju, handler je treba dat.
-
-    fetchEntries();
+      fetchEntries(uid);
+      console.log("ENTRIES FROM FIREBASE: " + entries);
+    }
   }, []);
 
-  return (
+  const deleteEntryHandler = (entryId) => {
+    deleteEntry(entryId);
+    setEntries((prevEntries) =>
+      prevEntries.filter((entry) => entry.id !== entryId)
+    );
+  };
+
+  return isLoading ? (
+    <CircularProgress
+      color="inherit"
+      sx={{ marginLeft: "50%", marginTop: "25%" }}
+    />
+  ) : (
     <div>
       {isEmpty ? (
         <div className={styles["no-entries"]}>No entries found...</div>
@@ -34,6 +45,7 @@ const EntriesList = () => {
             title={entry.title}
             date={entry.date.toDate()}
             content={entry.content}
+            onDelete={deleteEntryHandler}
           />
         ))
       )}
