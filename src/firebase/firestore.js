@@ -8,6 +8,7 @@ import {
   orderBy,
   query,
   setDoc,
+  getDoc,
   where,
 } from "firebase/firestore";
 
@@ -37,6 +38,22 @@ export async function getEntries(uid) {
   return allEntries;
 }
 
+export async function getEntry(entryId) {
+  const entryDocRef = doc(db, ENTRIES_COLLECTION, entryId);
+  const entryDocSnap = await getDoc(entryDocRef);
+
+  if (entryDocSnap.exists()) {
+    const entryData = entryDocSnap.data();
+    const entry = {
+      id: entryDocSnap.id, // Include the ID of the entry
+      ...entryData,
+    };
+    return entry;
+  } else {
+    // Handle the case when the entry doesn't exist
+    throw new Error("Entry not found");
+  }
+}
 export async function deleteEntry(entryId) {
   await deleteDoc(doc(db, ENTRIES_COLLECTION, entryId));
 }
