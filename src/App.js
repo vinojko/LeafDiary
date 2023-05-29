@@ -7,6 +7,7 @@ import Login from "./components/LoginRegister/Login";
 import Register from "./components/LoginRegister/Register";
 import { AuthUserProvider } from "./firebase/auth";
 import { EntriesProvider } from "./components/context/EntriesContext";
+import EntryDetail from "./components/EntryDetail/EntryDetail";
 import "./variables.css";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<RootLayout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/entry-detail" element={<EntryDetailPage />} />
+              <Route path="/entry-detail/:id" element={<EntryDetail />} />
             </Route>
           </Routes>
         </Router>

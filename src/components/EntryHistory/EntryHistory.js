@@ -41,7 +41,7 @@ const EntryHistory = (props) => {
   return (
     <>
       <Link
-        to="/entry-detail"
+        to={`/entry-detail/${props.id}`}
         style={{ color: "inherit", textDecoration: "inherit" }}
       >
         <div className={styles["entry"]}>
