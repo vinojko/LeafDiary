@@ -17,3 +17,8 @@ The Journal App allows users to insert and read entries. It uses Firebase for au
 
 - **Deleting Entries:** A feature to allow users to delete entries will be added in the future.
 - **Mobile Optimization:** The application will be optimized for mobile use.
+
+## Screenshots:
+
+![Signin](https://github.com/vinojko/LeafDiary/assets/65426858/4a254ad3-b62e-4c35-b8c7-9620e2377375)
+![Leafdiary screenshot](https://github.com/vinojko/LeafDiary/assets/65426858/1c18a521-2a1c-4c2e-92b9-fe2b00a1c86b)
